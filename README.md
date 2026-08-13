@@ -2,6 +2,8 @@
 
 Heal-assist raid frames for World of Warcraft 1.12 Vanilla (OctoWoW and compatible private servers).
 
+Here i will just state what i added or changed - for full doc please go to https://github.com/OldManAlpha/Puppeteer
+
 ---
 
 ## Aura Filters
