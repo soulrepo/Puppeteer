@@ -44,6 +44,5 @@ Drink
 
 ### Notes
 
-- Only buffs already in your tracked buff list can appear on frames. Adding a buff to either filter has no effect if it is not tracked in the first place.
 - Enemy frames are unaffected — both filters apply only to friendly unit frames.
 - The lists are saved per character in `WTF\Account\<account>\<realm>\<character>\SavedVariables\Puppeteer.lua`.
