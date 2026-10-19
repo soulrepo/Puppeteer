@@ -179,6 +179,7 @@ function HandleKeyPress(index)
             FakeMouseWheelHold(button)
         end
         ReapplySpellsTooltip()
+        RequestTooltipModifierCheck()
         if PTOptions.CastWhenKey == "Key Down" then
             UnitFrame_OnClick(button, Mouseover, MouseoverFrame, modifier)
         end
@@ -188,6 +189,7 @@ function HandleKeyPress(index)
             MouseoverFrame.pressed = false
             MouseoverFrame:AdjustHealthPosition()
             ReapplySpellsTooltip()
+            RequestTooltipModifierCheck()
         end
         if PTOptions.CastWhenKey == "Key Up" then
             UnitFrame_OnClick(button, Mouseover, MouseoverFrame, modifier)

@@ -154,6 +154,12 @@ local function PTTooltipKeyListener_OnUpdate()
     end
 end
 
+-- Makes the listener redraw the tooltip next frame. Needed after key bindings run, since some clients report
+-- modifier keys as not held during the binding.
+function RequestTooltipModifierCheck()
+    lastModifier = nil
+end
+
 function SetTooltipKeyListenerEnabled(enabled)
     if keyListener:GetScript("OnUpdate") ~= nil == enabled then -- Don't set the script if the state is unchanged
         return
