@@ -89,6 +89,9 @@ SlashCmdList["PUPPETEER"] = function(args)
         DEFAULT_CHAT_FRAME:AddMessage(PTUtil.Colorize("/pt hide", 0, 0.8, 0).." -- Hides the UI")
         DEFAULT_CHAT_FRAME:AddMessage(PTUtil.Colorize("/pt roles", 0, 0.8, 0).." -- Broadcast the roles you have assigned to chat")
         DEFAULT_CHAT_FRAME:AddMessage(PTUtil.Colorize("/pt silent", 0, 0.8, 0).." -- Turns off/on message when addon loads")
+        DEFAULT_CHAT_FRAME:AddMessage(PTUtil.Colorize("/pt group help", 0, 0.8, 0).." -- Shows custom group commands")
+    elseif args == "group" or PTUtil.StartsWith(args, "group ") then
+        Puppeteer.HandleCustomGroupCommand(string.sub(args, 6))
     elseif args == "importhm" then
         Puppeteer.ImportHealersMateSettings()
         Puppeteer.Info("Imported HealersMate settings")

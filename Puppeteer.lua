@@ -200,6 +200,7 @@ local function initUnitFrames()
     if util.IsSuperWowPresent() then
         CreateUnitFrameGroup("Focus", "all", PTUnitProxy.CustomUnitsMap["focus"], false, getSelectedProfile("Focus"), false)
         CreateUnitFrameGroup("Enemy", "all", PTUnitProxy.CustomUnitsMap["enemy"], false, getSelectedProfile("Enemy"), false)
+        InitCustomGroups()
     end
 
     local baseCondition = UnitFrameGroups["Target"].ShowCondition
@@ -735,6 +736,7 @@ function CheckGroup()
         GuidRoster.ResetRoster()
         GuidRoster.PopulateRoster()
         PTUnit.UpdateGuidCaches()
+        RefreshCustomGroups()
     end
     for _, unit in ipairs(util.AllRealUnits) do
         local exists, guid = UnitExists(unit)

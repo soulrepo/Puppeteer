@@ -42,6 +42,41 @@ ContextMenu:SetDynamicOptions(function(addOption, level, args)
         "func", function(self, gui)
             PTSettingsGui.TabFrame:Show()
         end)
+
+    local group = ContextMenu.FrameGroup
+    if group and group.customGroup then
+        addOption("notCheckable", true,
+            "disabled", true)
+        addOption("text", "Add Target",
+            "notCheckable", true,
+            "disabled", not UnitExists("target"),
+            "func", function(self, gui)
+                Puppeteer.AddUnitToCustomGroup(gui.FrameGroup.name, "target")
+            end)
+        addOption("text", "Remove Target",
+            "notCheckable", true,
+            "disabled", not Puppeteer.IsUnitInCustomGroup(group.name, "target"),
+            "func", function(self, gui)
+                Puppeteer.RemoveUnitFromCustomGroup(gui.FrameGroup.name, "target")
+            end)
+        addOption("text", "Delete Group",
+            "notCheckable", true,
+            "func", function(self, gui)
+                local name = gui.FrameGroup.name
+                local dialog = PTGuiLib.Get("simple_dialog", UIParent)
+                    :SetWidth(300)
+                    :SetPoint("CENTER")
+                    :SetTitle("Delete Group")
+                    :SetText("Delete the custom group \""..name.."\"?")
+                dialog:AddButton("Delete", function()
+                    Puppeteer.DeleteCustomGroup(name)
+                    dialog:Dispose()
+                end)
+                dialog:AddButton("Cancel", function()
+                    dialog:Dispose()
+                end)
+            end)
+    end
 end)
 
 function PTUnitFrameGroup:New(name, environment, units, petGroup, profile, sortByRole)

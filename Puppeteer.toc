@@ -67,6 +67,7 @@ core\Bindings.lua
 core\ActionBindings.lua
 core\Roles.lua
 core\EnemyTracker.lua
+core\CustomGroups.lua
 
 PuppeteerSettings.lua
 PTUnitFrame.lua
