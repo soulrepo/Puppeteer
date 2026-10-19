@@ -1034,7 +1034,7 @@ function CreateTab_Customize()
             "Party & Raid: Only while you're in a party or raid",
             "Raid: Only while you're in a raid",
             "Always: Also while you're solo"})
-        :SetWidth(150)
+    visibilityDropdown:SetWidth(150)
         :SetSimpleOptions(Puppeteer.CUSTOM_GROUP_VISIBILITIES, function(option)
             return {
                 text = option,
