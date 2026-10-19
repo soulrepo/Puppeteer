@@ -23,6 +23,25 @@ local function getUnitType(saved)
     return "ptgroup"..saved.Id.."_"
 end
 
+-- Players are remembered by name. Anything else, like mobs, is remembered by GUID, since their names repeat.
+local function isGuidMember(member)
+    return string.find(member, "^0x") ~= nil
+end
+
+local function getMemberKey(unit)
+    if UnitIsPlayer(unit) then
+        return UnitName(unit)
+    end
+    return PTGuidRoster.ResolveUnitGuid(unit)
+end
+
+local function getMemberDisplayName(member)
+    if isGuidMember(member) then
+        return UnitName(member) or "Unknown"
+    end
+    return member
+end
+
 function GetCustomGroupData(name)
     for _, saved in ipairs(getSavedGroups()) do
         if saved.Name == name then
@@ -88,6 +107,12 @@ function InitCustomGroups()
         return
     end
     for _, saved in ipairs(getSavedGroups()) do
+        -- GUIDs of non-players don't carry over between sessions
+        for i = table.getn(saved.Members), 1, -1 do
+            if isGuidMember(saved.Members[i]) then
+                table.remove(saved.Members, i)
+            end
+        end
         if not UnitFrameGroups[saved.Name] then
             createGroupFrames(saved)
         end
@@ -122,8 +147,8 @@ function RefreshCustomGroup(saved)
     end
     local known = sessionGuids[saved.Name] or {}
     local desired = {}
-    for _, name in ipairs(saved.Members) do
-        local guid = findGuidByName(name) or known[name]
+    for _, member in ipairs(saved.Members) do
+        local guid = isGuidMember(member) and member or findGuidByName(member) or known[member]
         if guid and not util.ArrayContains(desired, guid) then
             table.insert(desired, guid)
         end
@@ -291,8 +316,8 @@ end
 
 function IsUnitInCustomGroup(groupName, unit)
     local saved = GetCustomGroupData(groupName)
-    local name = UnitName(unit)
-    return saved ~= nil and name ~= nil and util.ArrayContains(saved.Members, name)
+    local member = getMemberKey(unit)
+    return saved ~= nil and member ~= nil and util.ArrayContains(saved.Members, member)
 end
 
 -- Returns true if the unit was added
@@ -301,19 +326,19 @@ function AddUnitToCustomGroup(groupName, unit)
     if not saved or not UnitExists(unit) then
         return false
     end
-    local name = UnitName(unit)
-    if util.ArrayContains(saved.Members, name) then
+    local member = getMemberKey(unit)
+    if not member or util.ArrayContains(saved.Members, member) then
         return false
     end
     if table.getn(saved.Members) >= CUSTOM_GROUP_MAX_MEMBERS then
         Info("\""..groupName.."\" is full ("..CUSTOM_GROUP_MAX_MEMBERS.." members).")
         return false
     end
-    table.insert(saved.Members, name)
+    table.insert(saved.Members, member)
     local guid = PTGuidRoster.ResolveUnitGuid(unit)
-    if guid then
+    if guid and not isGuidMember(member) then
         sessionGuids[groupName] = sessionGuids[groupName] or {}
-        sessionGuids[groupName][name] = guid
+        sessionGuids[groupName][member] = guid
     end
     RefreshCustomGroup(saved)
     return true
@@ -333,8 +358,8 @@ function RemoveNameFromCustomGroup(groupName, name)
 end
 
 function RemoveUnitFromCustomGroup(groupName, unit)
-    local name = UnitName(unit)
-    return name ~= nil and RemoveNameFromCustomGroup(groupName, name)
+    local member = getMemberKey(unit)
+    return member ~= nil and RemoveNameFromCustomGroup(groupName, member)
 end
 
 function ToggleUnitInCustomGroup(groupName, unit)
@@ -353,10 +378,10 @@ function PromoteCustomGroupUnit(unit)
     end
     for _, saved in ipairs(getSavedGroups()) do
         if getUnitType(saved) == unitType then
-            local name = UnitName(unit)
-            if name and util.ArrayContains(saved.Members, name) then
-                util.RemoveElement(saved.Members, name)
-                table.insert(saved.Members, 1, name)
+            local member = getMemberKey(unit)
+            if member and util.ArrayContains(saved.Members, member) then
+                util.RemoveElement(saved.Members, member)
+                table.insert(saved.Members, 1, member)
                 RefreshCustomGroup(saved)
             end
             return true
@@ -458,7 +483,11 @@ function HandleCustomGroupCommand(args)
             return
         end
         for _, saved in ipairs(groups) do
-            local members = table.getn(saved.Members) > 0 and table.concat(saved.Members, ", ") or "(empty)"
+            local names = {}
+            for _, member in ipairs(saved.Members) do
+                table.insert(names, getMemberDisplayName(member))
+            end
+            local members = table.getn(names) > 0 and table.concat(names, ", ") or "(empty)"
             Info(saved.Name..": "..members)
         end
     elseif sub == "create" then
