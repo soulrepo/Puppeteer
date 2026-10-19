@@ -275,6 +275,26 @@ function ToggleUnitInCustomGroup(groupName, unit)
     end
 end
 
+-- If the unit is one of a custom group's units, moves that member to the top of the group and returns true
+function PromoteCustomGroupUnit(unit)
+    local unitType = PTUnitProxy and PTUnitProxy.CustomUnitsTypeMap[unit]
+    if not unitType then
+        return false
+    end
+    for _, saved in ipairs(getSavedGroups()) do
+        if getUnitType(saved) == unitType then
+            local name = UnitName(unit)
+            if name and util.ArrayContains(saved.Members, name) then
+                util.RemoveElement(saved.Members, name)
+                table.insert(saved.Members, 1, name)
+                RefreshCustomGroup(saved)
+            end
+            return true
+        end
+    end
+    return false
+end
+
 function ClearCustomGroup(groupName)
     local saved = GetCustomGroupData(groupName)
     if not saved then

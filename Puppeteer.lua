@@ -646,6 +646,9 @@ function UnfocusUnit(unit)
 end
 
 function PromoteFocus(unit)
+    if PromoteCustomGroupUnit(unit) then
+        return
+    end
     local guid = PTGuidRoster.ResolveUnitGuid(unit)
     if not guid then
         return
