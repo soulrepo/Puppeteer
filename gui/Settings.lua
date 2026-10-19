@@ -856,7 +856,7 @@ function CreateTab_Customize()
 
     local preferredFrameOrder = {"Party", "Pets", "Raid", "Raid Pets", "Target", "Focus"}
     local frameDropdown = CreateLabeledDropdown(frameStyleContainer, "Configure Frame", "The frame to edit the attributes of")
-        :SetWidth(150)
+        :SetWidth(130)
         :SetDynamicOptions(function(addOption, level, args)
             for _, name in ipairs(preferredFrameOrder) do
                 if Puppeteer.UnitFrameGroups[name] then
@@ -887,6 +887,49 @@ function CreateTab_Customize()
         :SetText("Party")
     FrameDropdown = frameDropdown
     layout:column(3):layoutComponent(frameDropdown)
+
+    local newGroupButton = PTGuiLib.Get("button", frameStyleContainer)
+        :SetPoint("LEFT", frameDropdown, "RIGHT", 0, 0)
+        :SetSize(45, 22)
+        :SetText("New")
+        :OnClick(function()
+            if not util.IsSuperWowPresent() then
+                Puppeteer.Info("Custom groups require SuperWoW.")
+                return
+            end
+            local newGroup = PTGuiLib.Get("puppeteer_new_custom_group", TabFrame)
+                :SetPoint("CENTER", TabFrame, "CENTER")
+            AddOverlayFrame(newGroup)
+            PlaySound("igMainMenuOpen")
+        end)
+
+    local deleteGroupButton = PTGuiLib.Get("button", frameStyleContainer)
+        :SetPoint("LEFT", newGroupButton, "RIGHT", 3, 0)
+        :SetSize(52, 22)
+        :SetText("Delete")
+        :OnClick(function()
+            local name = frameDropdown:GetText()
+            if not Puppeteer.IsCustomGroup(name) then
+                return
+            end
+            local dialog = PTGuiLib.Get("simple_dialog", TabFrame)
+                :SetPoint("CENTER", TabFrame, "CENTER", 0, 40)
+            dialog:SetTitle("Confirm Delete")
+            dialog:SetText("Are you sure you want to delete the custom group '"..name.."'?")
+            dialog:AddButton("Yes, delete group", function()
+                dialog:Dispose()
+                PopOverlayFrame()
+                Puppeteer.DeleteCustomGroup(name)
+                SelectFrameGroup("Party")
+            end)
+            dialog:AddButton("No, keep group", function()
+                dialog:Dispose()
+                PopOverlayFrame()
+            end)
+            dialog:PlayOpenSound()
+            AddOverlayFrame(dialog)
+        end)
+    DeleteGroupButton = deleteGroupButton
     local GetSelectedProfileName = PuppeteerSettings.GetSelectedProfileName
     local styleDropdown = CreateLabeledDropdown(frameStyleContainer, "Choose Style", "The style of the frame")
         :SetWidth(150)
@@ -1112,6 +1155,15 @@ function UpdateFrameOptions()
     LockFrameCheckbox:SetChecked(PuppeteerSettings.IsFrameLocked(FrameDropdown:GetText()))
     HideTitleCheckbox:SetChecked(PuppeteerSettings.IsTitleHidden(FrameDropdown:GetText()))
     HideFrameCheckbox:SetChecked(PuppeteerSettings.IsFrameHidden(FrameDropdown:GetText()))
+    DeleteGroupButton:SetEnabled(Puppeteer.IsCustomGroup(FrameDropdown:GetText()))
+end
+
+-- Selects the frame group to configure in the Customize tab
+function SelectFrameGroup(name)
+    FrameDropdown:SetText(name)
+    StyleDropdown:UpdateText()
+    AnchorDropdown:UpdateText()
+    UpdateFrameOptions()
 end
 
 StyleOverrideComponents = {}

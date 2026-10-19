@@ -84,6 +84,7 @@ gui\component\MultiEditor.lua
 gui\component\BindingOptions.lua
 gui\component\ButtonEditor.lua
 gui\component\NewLoadout.lua
+gui\component\NewCustomGroup.lua
 gui\component\LoadScriptEditor.lua
 gui\Settings.lua
 

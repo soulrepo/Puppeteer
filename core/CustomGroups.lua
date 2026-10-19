@@ -188,6 +188,9 @@ function DeleteCustomGroup(name)
     PTOptions.FrameOptions[name] = nil
     PTOptions.ChosenProfiles[name] = nil
     sessionGuids[name] = nil
+    if PTSettingsGui.FrameDropdown and PTSettingsGui.FrameDropdown:GetText() == name then
+        PTSettingsGui.SelectFrameGroup("Party")
+    end
     return true
 end
 
@@ -215,6 +218,9 @@ function RenameCustomGroup(oldName, newName)
         UnitFrameGroups[newName] = group
         group.name = newName
         group.label:SetText(newName)
+    end
+    if PTSettingsGui.FrameDropdown and PTSettingsGui.FrameDropdown:GetText() == oldName then
+        PTSettingsGui.SelectFrameGroup(newName)
     end
     return true
 end
