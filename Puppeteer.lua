@@ -658,8 +658,9 @@ function CycleFocus(onlyAttackable)
 end
 
 local emptySpell = {}
-function UnitFrame_OnClick(button, unit, unitFrame)
-    local binding = GetBindingFor(unit, GetKeyModifier(), button)
+-- modifier is optional and defaults to the currently held key modifier
+function UnitFrame_OnClick(button, unit, unitFrame, modifier)
+    local binding = GetBindingFor(unit, modifier or GetKeyModifier(), button)
     if not UnitExists(unit) then
         if binding and binding.Type == "ACTION" then
             RunBinding(binding, unit, unitFrame)

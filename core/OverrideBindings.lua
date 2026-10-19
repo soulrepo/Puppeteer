@@ -6,39 +6,46 @@ local util = PTUtil
 
 _G.BINDING_HEADER_PUPPETEER = "Puppeteer (Don't Touch These)"
 local bindingsNames = {}
-local MAX_BINDINGS = 24
+-- Every custom button gets a separate binding per modifier combination, because some clients report
+-- modifier keys as not held while a key binding runs
+local MAX_BUTTONS = 16
+local MAX_BINDINGS = MAX_BUTTONS * 8
 for i = 1, MAX_BINDINGS do
     bindingsNames[i] = "PUPPETEERBINDING"..i
     _G["BINDING_NAME_"..bindingsNames[i]] = "Dynamic Binding "..i
 end
 local bindingsNamesSet = util.ToSet(bindingsNames)
 
+-- Key: Binding prefix | Value: The key modifier it represents
 local BindingPrefixes = {
-    "",
-    "SHIFT-",
-    "CTRL-",
-    "ALT-",
-    "ALT-CTRL-SHIFT-",
-    "ALT-CTRL-",
-    "ALT-SHIFT-",
-    "CTRL-SHIFT-"
+    {"", "None"},
+    {"SHIFT-", "Shift"},
+    {"CTRL-", "Control"},
+    {"ALT-", "Alt"},
+    {"ALT-CTRL-SHIFT-", "Shift+Control+Alt"},
+    {"ALT-CTRL-", "Control+Alt"},
+    {"ALT-SHIFT-", "Shift+Alt"},
+    {"CTRL-SHIFT-", "Shift+Control"}
 }
 
 StoredBindings = {} -- Key: Baked keybind key(like "ALT-SHIFT-R") | Value: The stored value of the binding
 IndexButtonMap = {} -- Key: Index corresponding to the binding | Value: Button name
+IndexModifierMap = {} -- Key: Index corresponding to the binding | Value: Key modifier
 KeybindIndexMap = {} -- Key: Baked keybind key | Value: Index corresponding to the binding
 
 function InitOverrideBindingsMapping()
     util.ClearTable(IndexButtonMap)
+    util.ClearTable(IndexModifierMap)
     util.ClearTable(KeybindIndexMap)
     local index = 1
     for _, button in ipairs(PTOptions.Buttons) do
-        if not util.GetAllButtonsSet()[button] then
+        if not util.GetAllButtonsSet()[button] and index <= MAX_BINDINGS then
             for _, prefix in ipairs(BindingPrefixes) do
-                KeybindIndexMap[prefix..button] = index
+                KeybindIndexMap[prefix[1]..button] = index
+                IndexButtonMap[index] = button
+                IndexModifierMap[index] = prefix[2]
+                index = index + 1
             end
-            IndexButtonMap[index] = button
-            index = index + 1
         end
     end
 
@@ -163,6 +170,7 @@ function HandleKeyPress(index)
         return
     end
     local button = IndexButtonMap[index]
+    local modifier = IndexModifierMap[index]
     if keystate == "down" then
         CurrentlyHeldButton = button
         MouseoverFrame.pressed = true
@@ -172,7 +180,7 @@ function HandleKeyPress(index)
         end
         ReapplySpellsTooltip()
         if PTOptions.CastWhenKey == "Key Down" then
-            UnitFrame_OnClick(button, Mouseover, MouseoverFrame)
+            UnitFrame_OnClick(button, Mouseover, MouseoverFrame, modifier)
         end
     else
         if button ~= "MOUSEWHEELUP" and button ~= "MOUSEWHEELDOWN" then
@@ -182,7 +190,7 @@ function HandleKeyPress(index)
             ReapplySpellsTooltip()
         end
         if PTOptions.CastWhenKey == "Key Up" then
-            UnitFrame_OnClick(button, Mouseover, MouseoverFrame)
+            UnitFrame_OnClick(button, Mouseover, MouseoverFrame, modifier)
         end
     end
 end

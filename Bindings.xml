@@ -71,4 +71,316 @@
     <Binding name ="PUPPETEERBINDING24" runOnUp="true">
         Puppeteer.HandleKeyPress(24)
     </Binding>
+    <Binding name ="PUPPETEERBINDING25" runOnUp="true">
+        Puppeteer.HandleKeyPress(25)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING26" runOnUp="true">
+        Puppeteer.HandleKeyPress(26)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING27" runOnUp="true">
+        Puppeteer.HandleKeyPress(27)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING28" runOnUp="true">
+        Puppeteer.HandleKeyPress(28)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING29" runOnUp="true">
+        Puppeteer.HandleKeyPress(29)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING30" runOnUp="true">
+        Puppeteer.HandleKeyPress(30)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING31" runOnUp="true">
+        Puppeteer.HandleKeyPress(31)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING32" runOnUp="true">
+        Puppeteer.HandleKeyPress(32)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING33" runOnUp="true">
+        Puppeteer.HandleKeyPress(33)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING34" runOnUp="true">
+        Puppeteer.HandleKeyPress(34)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING35" runOnUp="true">
+        Puppeteer.HandleKeyPress(35)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING36" runOnUp="true">
+        Puppeteer.HandleKeyPress(36)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING37" runOnUp="true">
+        Puppeteer.HandleKeyPress(37)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING38" runOnUp="true">
+        Puppeteer.HandleKeyPress(38)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING39" runOnUp="true">
+        Puppeteer.HandleKeyPress(39)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING40" runOnUp="true">
+        Puppeteer.HandleKeyPress(40)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING41" runOnUp="true">
+        Puppeteer.HandleKeyPress(41)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING42" runOnUp="true">
+        Puppeteer.HandleKeyPress(42)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING43" runOnUp="true">
+        Puppeteer.HandleKeyPress(43)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING44" runOnUp="true">
+        Puppeteer.HandleKeyPress(44)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING45" runOnUp="true">
+        Puppeteer.HandleKeyPress(45)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING46" runOnUp="true">
+        Puppeteer.HandleKeyPress(46)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING47" runOnUp="true">
+        Puppeteer.HandleKeyPress(47)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING48" runOnUp="true">
+        Puppeteer.HandleKeyPress(48)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING49" runOnUp="true">
+        Puppeteer.HandleKeyPress(49)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING50" runOnUp="true">
+        Puppeteer.HandleKeyPress(50)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING51" runOnUp="true">
+        Puppeteer.HandleKeyPress(51)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING52" runOnUp="true">
+        Puppeteer.HandleKeyPress(52)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING53" runOnUp="true">
+        Puppeteer.HandleKeyPress(53)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING54" runOnUp="true">
+        Puppeteer.HandleKeyPress(54)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING55" runOnUp="true">
+        Puppeteer.HandleKeyPress(55)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING56" runOnUp="true">
+        Puppeteer.HandleKeyPress(56)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING57" runOnUp="true">
+        Puppeteer.HandleKeyPress(57)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING58" runOnUp="true">
+        Puppeteer.HandleKeyPress(58)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING59" runOnUp="true">
+        Puppeteer.HandleKeyPress(59)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING60" runOnUp="true">
+        Puppeteer.HandleKeyPress(60)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING61" runOnUp="true">
+        Puppeteer.HandleKeyPress(61)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING62" runOnUp="true">
+        Puppeteer.HandleKeyPress(62)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING63" runOnUp="true">
+        Puppeteer.HandleKeyPress(63)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING64" runOnUp="true">
+        Puppeteer.HandleKeyPress(64)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING65" runOnUp="true">
+        Puppeteer.HandleKeyPress(65)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING66" runOnUp="true">
+        Puppeteer.HandleKeyPress(66)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING67" runOnUp="true">
+        Puppeteer.HandleKeyPress(67)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING68" runOnUp="true">
+        Puppeteer.HandleKeyPress(68)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING69" runOnUp="true">
+        Puppeteer.HandleKeyPress(69)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING70" runOnUp="true">
+        Puppeteer.HandleKeyPress(70)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING71" runOnUp="true">
+        Puppeteer.HandleKeyPress(71)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING72" runOnUp="true">
+        Puppeteer.HandleKeyPress(72)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING73" runOnUp="true">
+        Puppeteer.HandleKeyPress(73)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING74" runOnUp="true">
+        Puppeteer.HandleKeyPress(74)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING75" runOnUp="true">
+        Puppeteer.HandleKeyPress(75)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING76" runOnUp="true">
+        Puppeteer.HandleKeyPress(76)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING77" runOnUp="true">
+        Puppeteer.HandleKeyPress(77)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING78" runOnUp="true">
+        Puppeteer.HandleKeyPress(78)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING79" runOnUp="true">
+        Puppeteer.HandleKeyPress(79)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING80" runOnUp="true">
+        Puppeteer.HandleKeyPress(80)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING81" runOnUp="true">
+        Puppeteer.HandleKeyPress(81)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING82" runOnUp="true">
+        Puppeteer.HandleKeyPress(82)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING83" runOnUp="true">
+        Puppeteer.HandleKeyPress(83)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING84" runOnUp="true">
+        Puppeteer.HandleKeyPress(84)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING85" runOnUp="true">
+        Puppeteer.HandleKeyPress(85)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING86" runOnUp="true">
+        Puppeteer.HandleKeyPress(86)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING87" runOnUp="true">
+        Puppeteer.HandleKeyPress(87)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING88" runOnUp="true">
+        Puppeteer.HandleKeyPress(88)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING89" runOnUp="true">
+        Puppeteer.HandleKeyPress(89)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING90" runOnUp="true">
+        Puppeteer.HandleKeyPress(90)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING91" runOnUp="true">
+        Puppeteer.HandleKeyPress(91)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING92" runOnUp="true">
+        Puppeteer.HandleKeyPress(92)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING93" runOnUp="true">
+        Puppeteer.HandleKeyPress(93)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING94" runOnUp="true">
+        Puppeteer.HandleKeyPress(94)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING95" runOnUp="true">
+        Puppeteer.HandleKeyPress(95)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING96" runOnUp="true">
+        Puppeteer.HandleKeyPress(96)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING97" runOnUp="true">
+        Puppeteer.HandleKeyPress(97)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING98" runOnUp="true">
+        Puppeteer.HandleKeyPress(98)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING99" runOnUp="true">
+        Puppeteer.HandleKeyPress(99)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING100" runOnUp="true">
+        Puppeteer.HandleKeyPress(100)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING101" runOnUp="true">
+        Puppeteer.HandleKeyPress(101)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING102" runOnUp="true">
+        Puppeteer.HandleKeyPress(102)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING103" runOnUp="true">
+        Puppeteer.HandleKeyPress(103)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING104" runOnUp="true">
+        Puppeteer.HandleKeyPress(104)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING105" runOnUp="true">
+        Puppeteer.HandleKeyPress(105)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING106" runOnUp="true">
+        Puppeteer.HandleKeyPress(106)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING107" runOnUp="true">
+        Puppeteer.HandleKeyPress(107)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING108" runOnUp="true">
+        Puppeteer.HandleKeyPress(108)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING109" runOnUp="true">
+        Puppeteer.HandleKeyPress(109)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING110" runOnUp="true">
+        Puppeteer.HandleKeyPress(110)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING111" runOnUp="true">
+        Puppeteer.HandleKeyPress(111)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING112" runOnUp="true">
+        Puppeteer.HandleKeyPress(112)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING113" runOnUp="true">
+        Puppeteer.HandleKeyPress(113)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING114" runOnUp="true">
+        Puppeteer.HandleKeyPress(114)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING115" runOnUp="true">
+        Puppeteer.HandleKeyPress(115)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING116" runOnUp="true">
+        Puppeteer.HandleKeyPress(116)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING117" runOnUp="true">
+        Puppeteer.HandleKeyPress(117)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING118" runOnUp="true">
+        Puppeteer.HandleKeyPress(118)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING119" runOnUp="true">
+        Puppeteer.HandleKeyPress(119)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING120" runOnUp="true">
+        Puppeteer.HandleKeyPress(120)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING121" runOnUp="true">
+        Puppeteer.HandleKeyPress(121)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING122" runOnUp="true">
+        Puppeteer.HandleKeyPress(122)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING123" runOnUp="true">
+        Puppeteer.HandleKeyPress(123)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING124" runOnUp="true">
+        Puppeteer.HandleKeyPress(124)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING125" runOnUp="true">
+        Puppeteer.HandleKeyPress(125)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING126" runOnUp="true">
+        Puppeteer.HandleKeyPress(126)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING127" runOnUp="true">
+        Puppeteer.HandleKeyPress(127)
+    </Binding>
+    <Binding name ="PUPPETEERBINDING128" runOnUp="true">
+        Puppeteer.HandleKeyPress(128)
+    </Binding>
 </Bindings>
