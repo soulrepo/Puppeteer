@@ -66,7 +66,8 @@ local function customGroupShowCondition(self)
             return true
         end
     end
-    return false
+    -- Empty groups still show their title so members can be added from its menu
+    return not self.customGroupData.HideWhenEmpty
 end
 
 local function createGroupFrames(saved)
@@ -265,6 +266,23 @@ function SetCustomGroupVisibility(groupName, visibility)
         return
     end
     saved.Visibility = visibility
+    local group = UnitFrameGroups[groupName]
+    if group then
+        group:EvaluateShown()
+    end
+end
+
+function IsCustomGroupHiddenWhenEmpty(groupName)
+    local saved = GetCustomGroupData(groupName)
+    return saved ~= nil and saved.HideWhenEmpty == true
+end
+
+function SetCustomGroupHiddenWhenEmpty(groupName, hide)
+    local saved = GetCustomGroupData(groupName)
+    if not saved then
+        return
+    end
+    saved.HideWhenEmpty = hide
     local group = UnitFrameGroups[groupName]
     if group then
         group:EvaluateShown()

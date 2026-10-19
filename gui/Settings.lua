@@ -1081,6 +1081,15 @@ function CreateTab_Customize()
     layout:layoutComponent(hideFrameCheckbox)
     HideFrameCheckbox = hideFrameCheckbox
 
+    local hideEmptyCheckbox, hideEmptyLabel = CreateLabeledCheckbox(frameStyleContainer, "Hide When Empty", 
+        "If checked, this custom group is hidden while nobody is in it")
+    hideEmptyCheckbox:OnClick(function(self)
+        Puppeteer.SetCustomGroupHiddenWhenEmpty(frameDropdown:GetText(), self:GetChecked() == 1)
+    end)
+    layout:layoutComponent(hideEmptyCheckbox)
+    HideEmptyCheckbox = hideEmptyCheckbox
+    HideEmptyLabel = hideEmptyLabel
+
     UpdateFrameOptions()
 
     local overrideContainer = PTGuiLib.Get("scroll_frame", container)
@@ -1186,9 +1195,14 @@ function UpdateFrameOptions()
         VisibilityDropdown:UpdateText()
         VisibilityDropdown:Show()
         VisibilityLabel:Show()
+        HideEmptyCheckbox:SetChecked(Puppeteer.IsCustomGroupHiddenWhenEmpty(FrameDropdown:GetText()))
+        HideEmptyCheckbox:Show()
+        HideEmptyLabel:Show()
     else
         VisibilityDropdown:Hide()
         VisibilityLabel:Hide()
+        HideEmptyCheckbox:Hide()
+        HideEmptyLabel:Hide()
     end
 end
 
