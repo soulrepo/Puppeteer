@@ -846,7 +846,7 @@ function CreateTab_Customize()
     local frameStyleContainer = PTGuiLib.Get("container", container)
         :SetSimpleBackground()
         :SetPoint("TOPLEFT", container, "TOPLEFT", 5, -26)
-        :SetPoint("BOTTOMRIGHT", container, "TOPRIGHT", -5, -155)
+        :SetPoint("BOTTOMRIGHT", container, "TOPRIGHT", -5, -185)
     local layout = NewLabeledColumnLayout(frameStyleContainer, {100, 340, 175}, -25, 5)
 
     local frameSettingsText = CreateLabel(frameStyleContainer, "Frame Group Settings")
@@ -1029,6 +1029,31 @@ function CreateTab_Customize()
     layout:layoutComponent(anchorDropdown)
     AnchorDropdown = anchorDropdown
 
+    local visibilityDropdown, visibilityLabel = CreateLabeledDropdown(frameStyleContainer, "Show In", 
+            {"When this custom group is shown",
+            "Party & Raid: Only while you're in a party or raid",
+            "Raid: Only while you're in a raid",
+            "Always: Also while you're solo"})
+        :SetWidth(150)
+        :SetSimpleOptions(Puppeteer.CUSTOM_GROUP_VISIBILITIES, function(option)
+            return {
+                text = option,
+                initFunc = function(self)
+                    self.checked = Puppeteer.GetCustomGroupVisibility(frameDropdown:GetText()) == option
+                end,
+                func = function(self, gui)
+                    Puppeteer.SetCustomGroupVisibility(frameDropdown:GetText(), option)
+                    gui:UpdateText()
+                end
+            }
+        end)
+        :SetTextUpdater(function(self)
+            self:SetText(Puppeteer.GetCustomGroupVisibility(frameDropdown:GetText()) or "")
+        end)
+    layout:layoutComponent(visibilityDropdown)
+    VisibilityDropdown = visibilityDropdown
+    VisibilityLabel = visibilityLabel
+
     local lockFrameCheckbox = CreateLabeledCheckbox(frameStyleContainer, "Lock Frame", {"If checked, this frame will not be movable", 
         "Note: This setting is also accessible by right-clicking the group title bar"})
         :OnClick(function(self)
@@ -1155,7 +1180,16 @@ function UpdateFrameOptions()
     LockFrameCheckbox:SetChecked(PuppeteerSettings.IsFrameLocked(FrameDropdown:GetText()))
     HideTitleCheckbox:SetChecked(PuppeteerSettings.IsTitleHidden(FrameDropdown:GetText()))
     HideFrameCheckbox:SetChecked(PuppeteerSettings.IsFrameHidden(FrameDropdown:GetText()))
-    DeleteGroupButton:SetEnabled(Puppeteer.IsCustomGroup(FrameDropdown:GetText()))
+    local isCustomGroup = Puppeteer.IsCustomGroup(FrameDropdown:GetText())
+    DeleteGroupButton:SetEnabled(isCustomGroup)
+    if isCustomGroup then
+        VisibilityDropdown:UpdateText()
+        VisibilityDropdown:Show()
+        VisibilityLabel:Show()
+    else
+        VisibilityDropdown:Hide()
+        VisibilityLabel:Hide()
+    end
 end
 
 -- Selects the frame group to configure in the Customize tab

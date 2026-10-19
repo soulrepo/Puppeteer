@@ -43,6 +43,32 @@ function IsCustomGroup(name)
     return GetCustomGroupData(name) ~= nil
 end
 
+-- When a custom group is allowed to show
+CUSTOM_GROUP_VISIBILITIES = {"Party & Raid", "Raid", "Always"}
+local DEFAULT_VISIBILITY = "Party & Raid"
+
+local function customGroupShowCondition(self)
+    if PTOptions.Hidden or PuppeteerSettings.IsFrameHidden(self.name) then
+        return false
+    end
+
+    local inRaid = GetNumRaidMembers() > 0
+    local visibility = self.customGroupData.Visibility or DEFAULT_VISIBILITY
+    if visibility == "Raid" and not inRaid then
+        return false
+    end
+    if visibility == "Party & Raid" and not inRaid and GetNumPartyMembers() == 0 then
+        return false
+    end
+
+    for _, ui in pairs(self.uis) do
+        if ui:IsShown() then
+            return true
+        end
+    end
+    return false
+end
+
 local function createGroupFrames(saved)
     local unitType = getUnitType(saved)
     if not PTUnitProxy.CustomUnitsMap[unitType] then
@@ -51,6 +77,8 @@ local function createGroupFrames(saved)
     local group = CreateUnitFrameGroup(saved.Name, saved.Environment or "all", PTUnitProxy.CustomUnitsMap[unitType], 
         false, PuppeteerSettings.GetSelectedProfile(saved.Name), false)
     group.customGroup = true
+    group.customGroupData = saved
+    group.ShowCondition = customGroupShowCondition
     return group
 end
 
@@ -159,6 +187,7 @@ function CreateCustomGroup(name)
         Id = PTOptions.CustomGroupsNextId,
         Name = name,
         Environment = "all",
+        Visibility = DEFAULT_VISIBILITY,
         Members = {}
     }
     table.insert(getSavedGroups(), saved)
@@ -223,6 +252,23 @@ function RenameCustomGroup(oldName, newName)
         PTSettingsGui.SelectFrameGroup(newName)
     end
     return true
+end
+
+function GetCustomGroupVisibility(groupName)
+    local saved = GetCustomGroupData(groupName)
+    return saved and (saved.Visibility or DEFAULT_VISIBILITY)
+end
+
+function SetCustomGroupVisibility(groupName, visibility)
+    local saved = GetCustomGroupData(groupName)
+    if not saved then
+        return
+    end
+    saved.Visibility = visibility
+    local group = UnitFrameGroups[groupName]
+    if group then
+        group:EvaluateShown()
+    end
 end
 
 function IsUnitInCustomGroup(groupName, unit)
