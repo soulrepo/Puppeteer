@@ -45,7 +45,7 @@ end
 
 -- When a custom group is allowed to show
 CUSTOM_GROUP_VISIBILITIES = {"Party & Raid", "Raid", "Always"}
-local DEFAULT_VISIBILITY = "Party & Raid"
+local DEFAULT_VISIBILITY = "Always"
 
 local function customGroupShowCondition(self)
     if PTOptions.Hidden or PuppeteerSettings.IsFrameHidden(self.name) then
